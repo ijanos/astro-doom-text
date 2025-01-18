@@ -9,6 +9,8 @@ import doomSmallPalette_b64 from './doom-small.png.b64?raw'
 
 const buffer = Buffer.from(doomSmallPalette_b64, 'base64');
 const palette = await loadImage(buffer);
+const parseRegEx = /^(\d+)x(\d+)[+](\d+)[+](\d+)(?:@(-?\d+),(-?\d+))?$/;
+
 const doom_small = {
   "glyphs": {
     "!": "4x7+0+0",
@@ -104,8 +106,6 @@ async function createPngDataUrl(text: string) {
   ctx.patternQuality = "nearest";
   ctx.quality = 'nearest';
 
-  const parseRegEx = /^(\d+)x(\d+)[+](\d+)[+](\d+)(?:@(-?\d+),(-?\d+))?$/;
-
   let currentX = 0;
 
   function drawLetter(letter: string) {
@@ -151,6 +151,7 @@ async function createPngDataUrl(text: string) {
         }
       }
     }
+    return 0;
   }
 
 
@@ -158,9 +159,14 @@ async function createPngDataUrl(text: string) {
 
   const w = getWidth();
 
-  const cut = ctx.getImageData(0, 0, w!, canvas.height);
+  if (w < 1) {
+    console.log("Empty pictue, probably no matching glpyhs");
+    return;
+  }
 
-  const outcanvas = createCanvas(w!, canvas.height);
+  const cut = ctx.getImageData(0, 0, w, canvas.height);
+
+  const outcanvas = createCanvas(w, canvas.height);
   const cctx = outcanvas.getContext('2d');
   cctx.putImageData(cut, 0, 0);
 
