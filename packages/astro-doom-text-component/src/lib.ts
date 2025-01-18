@@ -104,7 +104,7 @@ async function createPngDataUrl(text: string) {
   ctx.patternQuality = "nearest";
   ctx.quality = 'nearest';
 
-  const parseRegEx = /(\d+)x(\d+)\+(\d+)\+(\d+)/;
+  const parseRegEx = /^(\d+)x(\d+)[+](\d+)[+](\d+)(?:@(-?\d+),(-?\d+))?$/;
 
   let currentX = 0;
 
@@ -121,12 +121,25 @@ async function createPngDataUrl(text: string) {
     // this is a hack to satisfy TypeScript
     const l = letter as keyof typeof doom_small.glyphs;
     const offset = doom_small.glyphs[l];
-    const [, sdx, sdy, soffX, soffY] = offset.match(parseRegEx) || [];
-    const [dx, dy, offX, offY] = [sdx, sdy, soffX, soffY].map(Number);
-    ctx.drawImage(palette, offX, offY, dx, dy, currentX * scale, 0, dx * scale, dy * scale);
-    currentX += dx;
-  }
 
+    const [_, width, height, x, y, dx, dy] = offset.match(parseRegEx) || [];
+    const glyph = {
+        width: parseInt(width, 10),
+        height: parseInt(height, 10),
+        x: parseInt(x, 10),
+        y: parseInt(y, 10),
+        dx: parseInt(dx ?? '0', 10),
+        dy: parseInt(dy ?? '0', 10),
+    };
+
+    ctx.drawImage(palette,
+      glyph.x, glyph.y,
+      glyph.width, glyph.height,
+      currentX * scale, glyph.dy * scale,
+      glyph.width * scale, glyph.height * scale
+    );
+    currentX += glyph.width;
+  }
 
   const getWidth = function () {
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -139,6 +152,7 @@ async function createPngDataUrl(text: string) {
       }
     }
   }
+
 
   text.split('').forEach(drawLetter);
 

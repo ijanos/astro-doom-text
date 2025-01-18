@@ -1,7 +1,7 @@
 ---
 import { DoomText } from 'astro-doom-text';
 
-const demoText = ["GREEN", "FOX", "CICA", "BOOKSHELF", "UNDER_SCORE", "?!_.,:"];
+const demoText = ["GREEN", "FOX", "CICA", "BOOKSHELF", "UNDER_SCORE", "?!_-.,:"];
 ---
 
 <html lang="en">
@@ -30,7 +30,7 @@ const demoText = ["GREEN", "FOX", "CICA", "BOOKSHELF", "UNDER_SCORE", "?!_.,:"];
 		<table>
 			{
 				demoText.map(text => {
-					return <tr><td>{ `<DoomText text="${ text }"/>` }</td><td><DoomText text={text}/></td></tr>
+					return <tr><td><pre>{ `<DoomText text="${ text }"/>` }</pre></td><td><DoomText text={text}/></td></tr>
 				})
 			}
 		</table>
