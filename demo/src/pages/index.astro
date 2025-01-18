@@ -30,9 +30,12 @@ const demoText = ["QUICK BROWN", "FOX", "DA-SH", "BOOKSHELF", "UNDER_SCORE", "?!
 		<table>
 			{
 				demoText.map(text => {
-					return <tr><td><pre>{ `<DoomText text="${ text }"/>` }</pre></td><td><DoomText text={text}/></td></tr>
+					return <tr><td><pre>{ `<DoomText text="${ text }"/>` }</pre></td><td><DoomText text={ text }/></td></tr>
 				})
 			}
+			<tr><td><pre>{ `<DoomText text="y"/>` }</pre></td><td><DoomText text="CHONK" scale={ 8 }/></td></tr>
+			<tr><td><pre>{ `<DoomText text="y"/>` }</pre></td><td><DoomText text="SMOL" scale={ 1 }/></td></tr>
+			<tr><td><pre>{ `<DoomText text="y"/>` }</pre></td><td><DoomText text="SMOL" scale={ 0.1 }/></td></tr>
 		</table>
 	</body>
 </html>

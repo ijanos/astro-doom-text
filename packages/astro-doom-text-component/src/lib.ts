@@ -95,10 +95,9 @@ const doom_small = {
 };
 
 
-async function createPngDataUrl(text: string) {
-  const scale = 4;
-
-  const MAX_WIDTH = 5000
+async function createPngDataUrl(text: string, targetScale: number) {
+  const scale = Math.max(1, targetScale);
+  const MAX_WIDTH = 5000;
   const canvas = createCanvas(MAX_WIDTH, (doom_small.line_height - 1) * scale);
   const ctx = canvas.getContext('2d');
 
