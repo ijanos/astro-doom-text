@@ -1,0 +1,38 @@
+---
+import { DoomText } from 'astro-doom-text';
+
+const demoText = ["GREEN", "FOX", "CICA", "BOOKSHELF", "UNDER_SCORE", "?!_.,:"];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+		<style>
+			body {margin: 5% auto; background: #f2f2f2; color: #444444; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.8; text-shadow: 0 1px 0 #ffffff; max-width: 73%;}
+
+			table {
+				width: 100%;
+			}
+			table, th, td {
+				border: 1px solid;
+			}
+			td {
+				padding: 0.5em;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Doom Text demo page</h1>
+		<table>
+			{
+				demoText.map(text => {
+					return <tr><td>{ `<DoomText text="${ text }"/>` }</td><td><DoomText text={text}/></td></tr>
+				})
+			}
+		</table>
+	</body>
+</html>

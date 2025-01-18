@@ -1,0 +1,13 @@
+---
+interface Props {
+	text: string;
+}
+
+const { text } = Astro.props;
+
+import createPngDataUrl from './lib.ts';
+
+const pngDataUrl = await createPngDataUrl(text);
+---
+
+<img style="image-rendering: pixelated;" src={ pngDataUrl } alt={ text } title={ text }/>
