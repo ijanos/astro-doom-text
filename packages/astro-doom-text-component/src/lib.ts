@@ -123,12 +123,12 @@ async function createPngDataUrl(text: string, targetScale: number) {
 
     const [_, width, height, x, y, dx, dy] = offset.match(parseRegEx) || [];
     const glyph = {
-        width: parseInt(width, 10),
-        height: parseInt(height, 10),
-        x: parseInt(x, 10),
-        y: parseInt(y, 10),
-        dx: parseInt(dx ?? '0', 10),
-        dy: parseInt(dy ?? '0', 10),
+      width: parseInt(width, 10),
+      height: parseInt(height, 10),
+      x: parseInt(x, 10),
+      y: parseInt(y, 10),
+      dx: parseInt(dx ?? '0', 10),
+      dy: parseInt(dy ?? '0', 10),
     };
 
     ctx.drawImage(palette,
@@ -153,7 +153,6 @@ async function createPngDataUrl(text: string, targetScale: number) {
     return 0;
   }
 
-
   text.split('').forEach(drawLetter);
 
   const w = getWidth();
@@ -172,7 +171,6 @@ async function createPngDataUrl(text: string, targetScale: number) {
   const pngDataUrl = outcanvas.toDataURL();
 
   return pngDataUrl;
-
 }
 
 export default createPngDataUrl;
