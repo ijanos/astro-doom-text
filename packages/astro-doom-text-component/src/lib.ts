@@ -112,6 +112,13 @@ async function createPngDataUrl(text: string, targetScale: number) {
       currentX += 8;
       return;
     }
+
+    if (letter in doom_small.glyphs == false) {
+      letter = letter.toLowerCase();
+    }
+    if (letter in doom_small.glyphs == false) {
+      letter = letter.toUpperCase();
+    }
     if (letter in doom_small.glyphs == false) {
       console.warn(`Missing glyph '${letter}'`);
       return;
@@ -158,7 +165,7 @@ async function createPngDataUrl(text: string, targetScale: number) {
   const w = getWidth();
 
   if (w < 1) {
-    console.log("Empty pictue, probably no matching glpyhs");
+    console.warn(`Empty image, probably no matching glpyhs for '${ text }'`);
     return;
   }
 
