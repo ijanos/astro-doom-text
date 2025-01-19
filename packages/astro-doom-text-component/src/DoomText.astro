@@ -1,14 +1,16 @@
 ---
+import { type Fonts } from './fonts.ts';
+import createPngDataUrl from './lib.ts';
+
 interface Props {
 	text: string;
 	scale?: number;
+	font?: Fonts;
 }
 
-const { text, scale = 2 } = Astro.props;
+const { text, scale = 2, font = 'doom-small' } = Astro.props;
+const pngDataUrl = await createPngDataUrl(text, scale, font);
 
-import createPngDataUrl from './lib.ts';
-
-const pngDataUrl = await createPngDataUrl(text, scale);
 ---
 
 <img style="image-rendering: pixelated;" src={ pngDataUrl } alt={ text } title={ text }/>

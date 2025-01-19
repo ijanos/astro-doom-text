@@ -1,20 +1,15 @@
 import { createCanvas, loadImage } from 'canvas';
+import {FontList, type Fonts} from './fonts.ts';
 
-// I couldn't figure out how to import the png directly or how to copy the png
-// into the build dir so relative paths don't break. I kept digging into Astro and
-// Vite then just gave up and converted to image to a base64 string that I simply
-// import. Look, I'm not a JavaScript dev. If it works it works.
-
-import doom_small  from './fonts/doom-small.ts';
-
-const buffer = Buffer.from(doom_small.palette, 'base64');
-const palette = await loadImage(buffer);
 const parseRegEx = /^(\d+)x(\d+)[+](\d+)[+](\d+)(?:@(-?\d+),(-?\d+))?$/;
 
-async function createPngDataUrl(text: string, targetScale: number) {
+async function createPngDataUrl(text: string, targetScale: number, selectedFont: Fonts) {
+  const font = FontList[selectedFont];
+  const buffer = Buffer.from(font.palette, 'base64');
+  const palette = await loadImage(buffer);
   const scale = Math.max(1, targetScale);
   const MAX_WIDTH = 5000;
-  const canvas = createCanvas(MAX_WIDTH, (doom_small.line_height - 1) * scale);
+  const canvas = createCanvas(MAX_WIDTH, (font.line_height - 1) * scale);
   const ctx = canvas.getContext('2d');
 
   ctx.imageSmoothingEnabled = false;
@@ -29,20 +24,20 @@ async function createPngDataUrl(text: string, targetScale: number) {
       return;
     }
 
-    if (letter in doom_small.glyphs == false) {
+    if (letter in font.glyphs == false) {
       letter = letter.toLowerCase();
     }
-    if (letter in doom_small.glyphs == false) {
+    if (letter in font.glyphs == false) {
       letter = letter.toUpperCase();
     }
-    if (letter in doom_small.glyphs == false) {
+    if (letter in font.glyphs == false) {
       console.warn(`Missing glyph '${letter}'`);
       return;
     }
 
     // this is a hack to satisfy TypeScript
-    const l = letter as keyof typeof doom_small.glyphs;
-    const offset = doom_small.glyphs[l];
+    const l = letter as keyof typeof font.glyphs;
+    const offset = font.glyphs[l];
 
     const [_, width, height, x, y, dx, dy] = offset.match(parseRegEx) || [];
     const glyph = {
@@ -82,7 +77,7 @@ async function createPngDataUrl(text: string, targetScale: number) {
 
   if (w < 1) {
     console.warn(`Empty image, probably no matching glpyhs for '${ text }'`);
-    return;
+    return "";
   }
 
   const cut = ctx.getImageData(0, 0, w, canvas.height);

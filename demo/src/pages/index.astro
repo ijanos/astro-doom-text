@@ -2,6 +2,8 @@
 import { DoomText } from 'astro-doom-text';
 
 const demoText = ["QUICK BROWN", "FOX", "DA-SH", "BOOKSHELF", "UNDER_SCORE", "?!_-.,:", "lowercase", "mIxEd CaSe", "", "űáőú", "test@example.com"];
+
+const x = '<DoomText text="yolololol" scale={ 0.1 }/>';
 ---
 
 <html lang="en">
@@ -10,7 +12,7 @@ const demoText = ["QUICK BROWN", "FOX", "DA-SH", "BOOKSHELF", "UNDER_SCORE", "?!
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Doom Text demo page</title>
 		<style>
 			body {margin: 5% auto; background: #f2f2f2; color: #444444; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.8; text-shadow: 0 1px 0 #ffffff; max-width: 73%;}
 
@@ -33,9 +35,12 @@ const demoText = ["QUICK BROWN", "FOX", "DA-SH", "BOOKSHELF", "UNDER_SCORE", "?!
 					return <tr><td><pre>{ `<DoomText text="${ text }"/>` }</pre></td><td><DoomText text={ text }/></td></tr>
 				})
 			}
-			<tr><td><pre>{ `<DoomText text="y"/>` }</pre></td><td><DoomText text="CHONK" scale={ 8 }/></td></tr>
-			<tr><td><pre>{ `<DoomText text="y"/>` }</pre></td><td><DoomText text="SMOL" scale={ 1 }/></td></tr>
-			<tr><td><pre>{ `<DoomText text="y"/>` }</pre></td><td><DoomText text="SMOL" scale={ 0.1 }/></td></tr>
+			<tr><td><pre>{ `<DoomText text="CHONK" scale={ 8 }/>` }</pre></td><td><DoomText text="CHONK" scale={ 8 } font='doom-nightmare'/></td></tr>
+			<tr><td><pre>{ `<DoomText text="SMOL" scale={ 1 }/>` }</pre></td><td><DoomText text="SMOL" scale={ 1 }/></td></tr>
+			<tr><td><pre>{ `<DoomText text="SMOL" scale={ 0.1 }/>` }</pre></td><td><DoomText text="SMOL" scale={ 0.1 }/></td></tr>
+			<tr><td><pre>{ `<DoomText text="CHONK" scale={ 4 } font='doom-bigupper'/>` }</pre></td><td><DoomText text="BigUpper" scale={ 4 } font='doom-bigupper'/></td></tr>
+			<tr><td><pre>{ `<DoomText text="CHONK" scale={ 4 } font='heretic-small'/>` }</pre></td><td><DoomText text="Heretic small" scale={ 4 } font='heretic-small'/></td></tr>
+
 		</table>
 	</body>
 </html>
