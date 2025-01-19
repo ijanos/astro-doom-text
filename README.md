@@ -4,7 +4,8 @@ This is a Doom Text generator component for [Astro](https://astro.build/).
 You can use it to add images that contain text using fonts from the classic
 video game DooM.
 
-The text generator idea is coming from [Eevee's doom text generator](https://github.com/eevee/doom-text-generator/). I ripped assets from that repo.
+The text generator idea is coming from [Eevee's doom text generator](https://github.com/eevee/doom-text-generator/).
+ I ripped assets from that repo. If you like this visit [Eevee's patreon](https://www.patreon.com/eevee).
 
 Copying the legal warning verbatim from that repo. Take care.
 
