@@ -77,7 +77,7 @@ async function createPngDataUrl(text: string, targetScale: number, selectedFont:
 
   if (w < 1) {
     console.warn(`Empty image, probably no matching glpyhs for '${ text }'`);
-    return "";
+    return "data:null";
   }
 
   const cut = ctx.getImageData(0, 0, w, canvas.height);
