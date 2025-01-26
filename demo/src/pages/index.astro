@@ -2,7 +2,7 @@
 import { DoomText } from 'astro-doom-text';
 import { type Fonts } from 'astro-doom-text';
 
-const fonts: Fonts[] = ['doom-small', 'doom-bigfont', 'doom-bigupper', 'doom-nightmare', 'heretic-small'];
+const fonts: Fonts[] = ['doom-small', 'doom-bigfont', 'doom-bigupper', 'doom-nightmare', 'heretic-small', 'heretic-menu', 'zdoom-console', 'dn3d-small', 'dn3d-big', 'dn3d-atomic'];
 const demoText = ["QUICK BROWN fox", "DA-SH", "UNDER_SCORE", "?!_-.,:", "lowercase", "mIxEd CaSe", "űáőú", "test@example.com", ""];
 ---
 
@@ -28,6 +28,9 @@ const demoText = ["QUICK BROWN fox", "DA-SH", "UNDER_SCORE", "?!_-.,:", "lowerca
 	</head>
 	<body>
 		<h1>Doom Text demo page</h1>
+		<p>
+			<a href="http://github.com/ijanos/astro-doom-text/">GitHub</a>
+		</p>
 		<table>
 			<tr><td><pre>{ `<DoomText text="Default scale" scale={ 2 }/>` }</pre></td>
 				<td>        <DoomText text="Default scale" scale={ 2 }/></td></tr>
@@ -41,11 +44,11 @@ const demoText = ["QUICK BROWN fox", "DA-SH", "UNDER_SCORE", "?!_-.,:", "lowerca
 			<tr><td><pre>{ `<DoomText text="SMOL" scale={ -1 }/>` }</pre></td>
 				<td>        <DoomText text="SMOL" scale={ -1 }/></td></tr>
 
-			<tr><td><pre>{ `<DoomText text="CHONK" scale={ 8 } font='doom-nightmare'/>` }</pre></td>
-				<td>        <DoomText text="CHONK" scale={ 8 } font='doom-nightmare'/></td></tr>
+			<tr><td><pre>{ `<DoomText text="CHONK" scale={ 6 } font='doom-nightmare'/>` }</pre></td>
+				<td>        <DoomText text="CHONK" scale={ 6 } font='doom-nightmare'/></td></tr>
 
-			<tr><td><pre>{ `<DoomText text="BigUpper" scale={ 4 } font='doom-bigupper'/>` }</pre></td>
-				<td>        <DoomText text="BigUpper" scale={ 4 } font='doom-bigupper'/></td></tr>
+			<tr><td><pre>{ `<DoomText text="BigUpper" scale={ 2 } font='doom-bigupper'/>` }</pre></td>
+				<td>        <DoomText text="BigUpper" scale={ 2 } font='doom-bigupper'/></td></tr>
 
 			<tr><td><pre>{ `<DoomText text="Heretic small" scale={ 4 } font='heretic-small'/>` }</pre></td>
 				<td>        <DoomText text="Heretic small" scale={ 4 } font='heretic-small'/></td></tr>
