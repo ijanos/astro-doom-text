@@ -20,7 +20,7 @@ async function createPngDataUrl(text: string, targetScale: number, selectedFont:
 
   function drawLetter(letter: string) {
     if (letter == ' ') {
-      currentX += 8;
+      currentX += font.space_width;
       return;
     }
 
