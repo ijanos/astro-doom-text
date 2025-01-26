@@ -9,6 +9,26 @@ import dn3dSmall from './fonts/dn3d-small.ts';
 import dn3dBig from './fonts/dn3d-big.ts';
 import dn3dAtomic from './fonts/dn3d-atomic.ts';
 
+interface FontMetadata {
+    name: string;
+    desc: string;
+    creator: string[] | string;
+    license: string;
+    format: string;
+    source: string;
+    source_url?: string;
+}
+interface Font {
+    glyphs: Record<string, string>;
+    type?: string;
+    space_width: number;
+    line_height: number;
+    baseline?: number;
+    lightness_range: number[];
+    meta: FontMetadata;
+    palette: string;
+}
+
 export type Fonts =
     'doom-small' |
     'doom-bigupper' |
@@ -26,7 +46,7 @@ export type Fonts =
 // Vite then just gave up and converted to image to a base64 string.
 // Look, I'm not a JavaScript dev. If it works it works.
 
-export const FontList = {
+export const FontList: Record<Fonts, Font> = {
     'doom-small': doomSmall,
     'doom-bigupper': doomBigUpper,
     'doom-nightmare': doomNightmare,

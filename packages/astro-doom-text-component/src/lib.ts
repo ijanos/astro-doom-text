@@ -35,8 +35,7 @@ async function createPngDataUrl(text: string, targetScale: number, selectedFont:
       return;
     }
 
-    // this is a hack to satisfy TypeScript
-    const l = letter as keyof typeof font.glyphs;
+    const l = letter;
     const offset = font.glyphs[l];
 
     const [_, width, height, x, y, dx, dy] = offset.match(parseRegEx) || [];
