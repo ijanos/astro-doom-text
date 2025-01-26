@@ -9,7 +9,7 @@ async function createPngDataUrl(text: string, targetScale: number, selectedFont:
   const palette = await loadImage(buffer);
   const scale = Math.max(1, targetScale);
   const MAX_WIDTH = 5000;
-  const canvas = createCanvas(MAX_WIDTH, (font.line_height - 1) * scale);
+  const canvas = createCanvas(MAX_WIDTH, font.line_height * scale);
   const ctx = canvas.getContext('2d');
 
   ctx.imageSmoothingEnabled = false;
