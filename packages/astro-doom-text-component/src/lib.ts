@@ -1,7 +1,20 @@
-import { createCanvas, loadImage } from 'canvas';
-import {FontList, type Fonts} from './fonts.ts';
+import { createCanvas, ImageData, loadImage } from 'canvas';
+import { FontList, type Fonts } from './fonts.ts';
 
 const parseRegEx = /^(\d+)x(\d+)[+](\d+)[+](\d+)(?:@(-?\d+),(-?\d+))?$/;
+
+function getWidth(imageData: ImageData, width: number, height: number) {
+  for (let x = width - 1; x > 0; x--) {
+    for (let y = 0; y < height; y++) {
+      const index = (y * width + x) * 4;
+      if (imageData.data[index + 3] != 0) {
+        return x + 1;
+      }
+    }
+  }
+  return 0;
+}
+
 
 async function createPngDataUrl(text: string, targetScale: number, selectedFont: Fonts) {
   const font = FontList[selectedFont];
@@ -57,26 +70,13 @@ async function createPngDataUrl(text: string, targetScale: number, selectedFont:
     currentX += glyph.width;
   }
 
-  const getWidth = function () {
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    for (let x = canvas.width - 1; x > 0; x--) {
-      for (let y = 0; y < canvas.height; y++) {
-        const index = (y * canvas.width + x) * 4;
-        if (imageData.data[index + 3] != 0) {
-          return x + 1;
-        }
-      }
-    }
-    return 0;
-  }
-
   text.split('').forEach(drawLetter);
-
-  const w = getWidth();
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let w = getWidth(imageData, canvas.width, canvas.height);
 
   if (w < 1) {
     console.warn(`Empty image, probably no matching glpyhs for '${ text }'`);
-    return "data:null";
+    w = 1;
   }
 
   const cut = ctx.getImageData(0, 0, w, canvas.height);

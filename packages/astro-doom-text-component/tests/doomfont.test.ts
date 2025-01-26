@@ -52,14 +52,17 @@ test('DoomText image is the correct size', async () => {
   const buffer = Buffer.from(b64Image, 'base64');
   const dimensions = imageSize(buffer);
   expect(dimensions.height).toBe(16);
-  expect(dimensions.width).toBe(178);
+  expect(dimensions.width).toBe(170);
 });
 
-test('DoomText image is empty when text is empty', async () => {
+test('DoomText image is 1px wide when text is empty', async () => {
   const text = "";
   const component = createDoomTextComponenet(text);
   const imgElement = createHTMLImageElementFromString(await component);
-  expect(imgElement?.src).toBe("data:null");
+  let b64Image = imgElement?.src.split(',')[1] as string;
+  let buffer = Buffer.from(b64Image, 'base64');
+  let dimensions = imageSize(buffer);
+  expect(dimensions.width).toBe(1);
 });
 
 test('DoomText can be scaled', async () => {
@@ -71,7 +74,7 @@ test('DoomText can be scaled', async () => {
   let buffer = Buffer.from(b64Image, 'base64');
   let dimensions = imageSize(buffer);
   expect(dimensions.height).toBe(16);
-  expect(dimensions.width).toBe(178);
+  expect(dimensions.width).toBe(170);
 
   component = createDoomTextComponenet(text, 4);
   imgElement = createHTMLImageElementFromString(await component);
@@ -80,5 +83,5 @@ test('DoomText can be scaled', async () => {
   buffer = Buffer.from(b64Image, 'base64');
   dimensions = imageSize(buffer);
   expect(dimensions.height).toBe(32);
-  expect(dimensions.width).toBe(356);
+  expect(dimensions.width).toBe(340);
 });
