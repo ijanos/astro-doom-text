@@ -3,7 +3,7 @@
 
 ![Doom Text Astro with DooM's nightmare font](images/doom-text-astro-nightmare.png)
 
-This is a Doom Text generator component for [Astro](https://astro.build/).
+This is a Doom Text generator component for the [Astro](https://astro.build/) static site builder.
 You can use it to add images that contain text using fonts from the classic
 video game DooM.
 
