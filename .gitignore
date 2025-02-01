@@ -1,5 +1,7 @@
 # build output
 dist/
+# enable build output for the demo page for GitHub pages
+!demo/dist
 # generated types
 .astro/
 
