@@ -1,5 +1,7 @@
 {
   "name": "astro-doom-text",
+  "homepage": "https://github.com/ijanos/astro-doom-text#readme",
+  "description": "Doom text generator Astro component",
   "version": "0.0.1",
   "type": "module",
   "exports": {
@@ -10,7 +12,10 @@
     "index.ts"
   ],
   "keywords": [
-    "astro-component"
+    "astro-component",
+    "astro",
+    "doom",
+    "withastro"
   ],
   "scripts": {
     "test": "astro check && vitest run",
