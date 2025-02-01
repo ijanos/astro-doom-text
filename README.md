@@ -1,5 +1,8 @@
 # Doom Text Astro component
 
+
+![Doom Text Astro with DooM's nightmare font](images/doom-text-astro-nightmare.png)
+
 This is a Doom Text generator component for [Astro](https://astro.build/).
 You can use it to add images that contain text using fonts from the classic
 video game DooM.
