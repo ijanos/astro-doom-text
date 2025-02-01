@@ -4,8 +4,8 @@ import { type Fonts } from 'astro-doom-text';
 
 const fonts: Fonts[] = ['doom-small', 'doom-bigfont', 'doom-bigupper', 'doom-nightmare', 'heretic-small', 'heretic-menu', 'zdoom-console', 'dn3d-small', 'dn3d-big', 'dn3d-atomic'];
 const demoText = ["QUICK BROWN fox", "DA-SH", "UNDER_SCORE", "?!_-.,:", "lowercase", "mIxEd CaSe", "űáőú", "test@example.com", ""];
+const scales = [-1, 0, 0.1, 1, 2, 4, 8, 16].reverse();
 ---
-
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -17,53 +17,64 @@ const demoText = ["QUICK BROWN fox", "DA-SH", "UNDER_SCORE", "?!_-.,:", "lowerca
 
 			table {
 				width: 100%;
+				margin: 10px;
 			}
-			table, th, td {
-				border: 1px solid;
+			table {
+				border: 1px solid #999999;
+				margin-bottom: 2em;
 			}
 			td {
 				padding: 0.5em;
 			}
+			pre {
+				margin: 0;
+				font-size: 1.5em;
+				font-family: ui-monospace,
+					Menlo, Monaco,
+					"Cascadia Mono", "Segoe UI Mono",
+					"Roboto Mono",
+					"Oxygen Mono",
+					"Ubuntu Mono",
+					"Source Code Pro",
+					"Fira Mono",
+					"Droid Sans Mono",
+					"Consolas", "Courier New", monospace;
+			}
 		</style>
 	</head>
 	<body>
-		<h1>Doom Text demo page</h1>
 		<p>
-			<a href="http://github.com/ijanos/astro-doom-text/">GitHub</a>
+		<DoomText text="Doom Text Astro" scale={ 6 } font='doom-nightmare'/>
 		</p>
-		<table>
-			<tr><td><pre>{ `<DoomText text="Default scale" scale={ 2 }/>` }</pre></td>
-				<td>        <DoomText text="Default scale" scale={ 2 }/></td></tr>
+		<p>
+			<DoomText text="demo page" scale={ 2 } font='doom-bigupper'/>
+		</p>
 
-			<tr><td><pre>{ `<DoomText text="SMOL" scale={ 1 }/>` }</pre></td>
-				<td>        <DoomText text="SMOL" scale={ 1 }/></td></tr>
+			<a href="http://github.com/ijanos/astro-doom-text/">
+				<DoomText scale={ 1 } text="link to GitHub project" font="dn3d-big"/>
+			</a>
+		<h2>Demo</h2>
 
-			<tr><td><pre>{ `<DoomText text="SMOL" scale={ 0.1 }/>` }</pre></td>
-				<td>        <DoomText text="SMOL" scale={ 0.1 }/></td></tr>
+		{
+			scales.map(scale => {
+				return <table>
+						 <tr><td><pre>{ `<DoomText text="demo text" scale="${ scale }"/>` }</pre></td></tr>
+						 <tr><td><DoomText text="demo text" scale={ scale }/></td></tr>
+					</table>
 
-			<tr><td><pre>{ `<DoomText text="SMOL" scale={ -1 }/>` }</pre></td>
-				<td>        <DoomText text="SMOL" scale={ -1 }/></td></tr>
-
-			<tr><td><pre>{ `<DoomText text="CHONK" scale={ 6 } font='doom-nightmare'/>` }</pre></td>
-				<td>        <DoomText text="CHONK" scale={ 6 } font='doom-nightmare'/></td></tr>
-
-			<tr><td><pre>{ `<DoomText text="BigUpper" scale={ 2 } font='doom-bigupper'/>` }</pre></td>
-				<td>        <DoomText text="BigUpper" scale={ 2 } font='doom-bigupper'/></td></tr>
-
-			<tr><td><pre>{ `<DoomText text="Heretic small" scale={ 4 } font='heretic-small'/>` }</pre></td>
-				<td>        <DoomText text="Heretic small" scale={ 4 } font='heretic-small'/></td></tr>
-
-		</table>
+			})
+		}
 		{
 			fonts.map(font => {
-				return <h2>{ font }</h2>
-				<table>
-					{ demoText.map(text => {
-						return <tr><td><pre>{ `<DoomText text="${ text }" font="${ font }"/>` }</pre></td><td><DoomText text={ text } font={ font }/></td></tr>
-					}) }
-				</table>
+				return <h2> Font: { font } </h2>
+				<div> { demoText.map(text => {
+					return <table>
+						 <tr><td><pre>{ `<DoomText text="${ text }" font="${ font }"/>` }</pre></td></tr>
+						 <tr><td><DoomText text={ text } font={ font }/></td></tr>
+					</table>
+				}) }
+				</div>
 			})
-
 		}
 
 
