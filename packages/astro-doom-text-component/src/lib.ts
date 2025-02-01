@@ -48,8 +48,7 @@ async function createPngDataUrl(text: string, targetScale: number, selectedFont:
       return;
     }
 
-    const l = letter;
-    const offset = font.glyphs[l];
+    const offset = font.glyphs[letter];
 
     const [_, width, height, x, y, dx, dy] = offset.match(parseRegEx) || [];
     const glyph = {
@@ -85,9 +84,7 @@ async function createPngDataUrl(text: string, targetScale: number, selectedFont:
   const cctx = outcanvas.getContext('2d');
   cctx.putImageData(cut, 0, 0);
 
-  const pngDataUrl = outcanvas.toDataURL();
-
-  return pngDataUrl;
+  return outcanvas.toDataURL();
 }
 
 export default createPngDataUrl;
