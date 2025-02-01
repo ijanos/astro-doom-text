@@ -28,3 +28,4 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run test --workspace packages/astro-doom-text-component
+    - run: npm run build --workspace demo
